@@ -5,13 +5,13 @@ import Spinner from 'src/components/ui/Spinner';
 import type { Availability as AvailabilityType } from 'src/utils/types';
 
 function App() {
-  const [avialData, setAvailData] = useState<AvailabilityType>();
+  const [availData, setAvailData] = useState<AvailabilityType>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onFormSubmit = async (url: string) => {
     setIsLoading(true);
 
-    await fetch('http://localhost:3000/', {
+    const response = await fetch('http://localhost:3000/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -19,11 +19,13 @@ function App() {
       body: JSON.stringify({ calendlyUrl: url }),
     });
 
+    const data = await response.json();
+
     setIsLoading(false);
 
-    // if (slots) {
-    //   setAvailData(slots);
-    // }
+    if (data) {
+      setAvailData(data);
+    }
   };
 
   return (
@@ -38,7 +40,7 @@ function App() {
         </div>
       )}
 
-      <Availability availData={avialData} />
+      <Availability availData={availData} />
     </div>
   );
 }

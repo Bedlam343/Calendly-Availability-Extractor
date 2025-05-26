@@ -3,6 +3,8 @@ import type { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
+import scrapeCalendly from './scrape/scrape-calendly';
+
 const app = express();
 const router = express.Router();
 router
@@ -10,9 +12,15 @@ router
   .post(async (req: Request, res: Response, next: NextFunction) => {
     const { calendlyUrl } = req.body;
 
-    console.log(calendlyUrl);
+    const availData = await scrapeCalendly(calendlyUrl);
 
-    res.status(200).json({});
+    console.log(availData);
+
+    if (availData) {
+      res.status(200).json(availData);
+    } else {
+      res.status(500).send(null);
+    }
   });
 
 app.use(cors());

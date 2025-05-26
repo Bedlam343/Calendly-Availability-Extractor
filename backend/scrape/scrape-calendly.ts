@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
-import { getNextMonday, getFormattedDate } from 'src/scrape/helpers';
-import { MONTH_INDEX } from 'src/utils/constant';
-import type { Availability } from 'src/utils/types';
+import { getNextMonday, getFormattedDate } from './helpers';
+import { MONTH_INDEX } from './constants';
+import type { Availability } from './types';
 
 const scrapeCalendly = async (calendlyUrl: string) => {
   const browser = await chromium.launch({ headless: true });

@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import Title from 'src/components/Title';
 import Form from 'src/components/Form';
 import Availability from 'src/components/Availability';
+import CursorStalker from 'src/components/ui/CursorStalker';
 import Spinner from 'src/components/ui/Spinner';
+import { DUMMY_DATA } from './utils/constant';
 import type { Availability as AvailabilityType } from 'src/utils/types';
 
 function App() {
@@ -30,13 +33,16 @@ function App() {
 
   return (
     <div className="my-4">
+      <Title />
+      <CursorStalker />
+
       <Form onSubmit={onFormSubmit} />
 
       <div className="h-[40px]" />
       {isLoading && (
         <div className="flex flex-col items-center gap-3">
           <Spinner />
-          <p className="text-stone-800">Fetching availability data...</p>
+          <p className="text-stone-900">Fetching availability data...</p>
         </div>
       )}
 

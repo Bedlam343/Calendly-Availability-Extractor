@@ -12,17 +12,13 @@ const Form = ({ onSubmit }: FormProps) => {
   };
 
   return (
-    <div>
-      <p className="text-4xl text-center underline decoration-2 underline-offset-4 decoration-blue-400 decoration-wavy">
-        Calendly Schedule Extractor
-      </p>
-
-      <form onSubmit={handleSubmit} className="mt-8">
+    <div className="mt-8">
+      <form onSubmit={handleSubmit}>
         <div className="flex flex-col items-center">
           <div>
             <label
               htmlFor="calendly_url"
-              className="block font-bold text-stone-700"
+              className="block font-bold text-stone-50"
             >
               Calendly Link
             </label>
@@ -40,7 +36,7 @@ const Form = ({ onSubmit }: FormProps) => {
         <div className="mt-6 flex justify-center">
           <button
             type="submit"
-            className="text-stone-800 px-4 py-2 rounded-md bg-blue-200 hover:cursor-pointer hover:bg-blue-100"
+            className="text-stone-50 px-4 py-2 rounded-md bg-purple-500 hover:cursor-pointer hover:bg-purple-400"
           >
             Extract Availability
           </button>

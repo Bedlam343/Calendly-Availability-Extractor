@@ -28,7 +28,7 @@ const Availability = ({ availData }: Props) => {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center text-stone-100">
       <div className="flex flex-col gap-8">
         <p className="text-2xl text-center">Availability (Next 4 Weeks)</p>
         <div className="flex flex-col gap-6">
@@ -70,7 +70,7 @@ const Availability = ({ availData }: Props) => {
                       {month} {year}
                     </p>
 
-                    <div className="border-[1px] border-black rounded-lg px-2 py-2">
+                    <div className="border-[1px] border-stone-600 rounded-lg px-2 py-2">
                       <table className="">
                         <thead className="">
                           <tr>
@@ -100,13 +100,7 @@ const Availability = ({ availData }: Props) => {
                             >
                               {week.map((day) => (
                                 <td
-                                  className={`px-1 py-1 w-[45px] rounded-full ${
-                                    isActive(year, month, day.monthDay!)
-                                      ? 'bg-blue-300'
-                                      : ''
-                                  } ${
-                                    !day.timeSlots ? '' : 'hover:bg-blue-300'
-                                  }`}
+                                  className={`px-1 py-1 w-[45px]`}
                                   key={`${year}-${month}-${
                                     day.monthDay ?? Math.random()
                                   }`}
@@ -120,8 +114,16 @@ const Availability = ({ availData }: Props) => {
                                         day.timeSlots,
                                       )
                                     }
-                                    className={`w-full text-center ${
-                                      !day.timeSlots ? 'text-gray-400' : ''
+                                    className={`w-[35px] h-[35px] text-center rounded-full ${
+                                      isActive(year, month, day.monthDay!)
+                                        ? 'bg-purple-500'
+                                        : ''
+                                    } ${
+                                      !day.timeSlots
+                                        ? ''
+                                        : 'hover:bg-purple-500'
+                                    } ${
+                                      !day.timeSlots ? 'text-stone-500' : ''
                                     }`}
                                     disabled={!day.timeSlots}
                                   >
@@ -142,7 +144,7 @@ const Availability = ({ availData }: Props) => {
         </div>
       </div>
 
-      {activeDay && (
+      {activeDay.year && (
         <div className="mt-[50px]">
           <TimeSlots {...activeDay} />
         </div>

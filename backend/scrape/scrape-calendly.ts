@@ -30,13 +30,6 @@ const scrapeCalendly = async (calendlyUrl: string) => {
 
       const [calendarMonth, year] = headerTitle!.split(' ');
 
-      if (slots[year]) {
-        slots[year][calendarMonth] = [];
-      } else {
-        slots[year] = {};
-        slots[year][calendarMonth] = [];
-      }
-
       const tbody = page.getByTestId('calendar-table');
       const rows = tbody.locator('tr');
       const rowCount = await rows.count();
@@ -83,6 +76,13 @@ const scrapeCalendly = async (calendlyUrl: string) => {
               const spot = spotDivs.nth(k);
               const time = await spot.textContent();
               timeSlots.push(time);
+            }
+
+            if (!slots[year]) {
+              slots[year] = {};
+              slots[year][calendarMonth] = [];
+            } else if (!slots[year][calendarMonth]) {
+              slots[year][calendarMonth] = [];
             }
 
             slots[year][calendarMonth].push({

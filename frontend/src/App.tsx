@@ -32,22 +32,25 @@ function App() {
   };
 
   return (
-    <div className="my-4">
+    <div className="my-8 flex flex-col items-center">
       <Title />
-      <CursorStalker />
 
-      <Form onSubmit={onFormSubmit} />
+      <div className="w-[500px]">
+        <CursorStalker />
 
-      <div className="h-[40px]" />
-      {isLoading && (
-        <div className="flex flex-col items-center gap-3 z-10">
-          <Spinner />
-          <p className="text-stone-300">Fetching availability data...</p>
-        </div>
-      )}
+        <Form onSubmit={onFormSubmit} />
 
-      <div className="h-[40px]" />
-      <Availability availData={availData} />
+        <div className="h-[40px]" />
+        {isLoading && (
+          <div className="flex flex-col items-center gap-3 z-10">
+            <Spinner />
+            <p className="text-stone-300">Fetching availability data...</p>
+          </div>
+        )}
+
+        <div className="h-[40px]" />
+        <Availability availData={availData} />
+      </div>
     </div>
   );
 }

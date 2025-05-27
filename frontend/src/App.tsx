@@ -9,25 +9,33 @@ import type { Availability as AvailabilityType } from 'src/utils/types';
 function App() {
   const [availData, setAvailData] = useState<AvailabilityType | undefined>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
 
   const onFormSubmit = async (url: string, weeks: number) => {
     setIsLoading(true);
     setAvailData(undefined);
+    setError('');
 
-    const response = await fetch('http://localhost:3000/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ calendlyUrl: url, weeks }),
-    });
+    try {
+      const response = await fetch('http://localhost:3000/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ calendlyUrl: url, weeks }),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    setIsLoading(false);
+      setIsLoading(false);
 
-    if (data) {
-      setAvailData(data);
+      if (data) {
+        setAvailData(data);
+      }
+    } catch (err) {
+      console.error(err);
+      setIsLoading(false);
+      setError('Error fetching availability. Try again.');
     }
   };
 
@@ -46,6 +54,10 @@ function App() {
             <Spinner />
             <p className="text-stone-300">Fetching availability data...</p>
           </div>
+        )}
+
+        {error && (
+          <p className="font-mono text-sm text-center text-red-500">{error}</p>
         )}
 
         <div className="h-[40px]" />

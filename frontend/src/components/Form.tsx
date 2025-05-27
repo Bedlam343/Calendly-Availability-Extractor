@@ -42,17 +42,17 @@ const Form = ({ onSubmit }: FormProps) => {
         <div className="mt-6 flex flex-col items-center gap-6">
           <button
             type="submit"
-            className="text-stone-50 px-4 py-2 rounded-md bg-purple-500 hover:cursor-pointer hover:bg-purple-400"
+            className="z-10 text-stone-50 px-4 py-2 rounded-md bg-purple-500 hover:cursor-pointer hover:bg-purple-400"
           >
             Extract Availability
           </button>
 
-          <div className="w-[100px]">
+          <div className="w-[100px] z-0">
             <div className="relative">
               <select
                 name="weeks"
                 defaultValue={4}
-                className="w-full bg-stone-900 text-stone-200 text-sm border 
+                className=" w-full bg-stone-900 text-stone-200 text-sm border 
                 border-stone-400 rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none 
                 focus:border-stone-500 hover:border-stone-500 shadow-sm 
                 focus:shadow-md appearance-none cursor-pointer"

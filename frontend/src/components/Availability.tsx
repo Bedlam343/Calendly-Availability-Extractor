@@ -30,7 +30,7 @@ const Availability = ({ availData }: Props) => {
   return (
     <div className="flex flex-col items-center text-stone-100 z-50">
       <div className="flex flex-col gap-7">
-        <p className="text-2xl text-center font-mono text-stone-300">
+        <p className="text-3xl text-center font-mono text-stone-300">
           Availability
         </p>
         <div className="flex flex-col gap-6">
@@ -65,7 +65,7 @@ const Availability = ({ availData }: Props) => {
               return (
                 <div
                   key={`${year}-${month}`}
-                  className="flex flex-col items-center "
+                  className="flex flex-col items-center"
                 >
                   <div>
                     <div className="relative flex pointer-events-none mb-2">

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { getDayOfWeek } from 'src/utils/helpers';
 import { MONTH_INDEX } from 'src/utils/constant';
 
@@ -9,6 +10,12 @@ type Props = {
 };
 
 const TimeSlots = ({ year, month, monthDay, timeSlots }: Props) => {
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    divRef.current!.scrollIntoView({ behavior: 'smooth' });
+  });
+
   const { day: dayOfWeek } = getDayOfWeek(
     Number(year),
     MONTH_INDEX[month as keyof typeof MONTH_INDEX],
@@ -16,7 +23,7 @@ const TimeSlots = ({ year, month, monthDay, timeSlots }: Props) => {
   );
 
   return (
-    <div className="flex justify-center">
+    <div ref={divRef} className="flex justify-center">
       <div className="w-[500px]">
         <p className="text-lg font-semibold mb-3">
           {dayOfWeek}, {month} {monthDay}

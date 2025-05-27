@@ -1,6 +1,6 @@
 const Title = () => {
   return (
-    <div className="relative flex justify-center">
+    <div className="relative flex justify-center pointer-events-none">
       <p className="text-4xl text-center text-stone-100 font-mono">
         Calendly Schedule Extractor
       </p>

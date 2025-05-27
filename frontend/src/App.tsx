@@ -40,12 +40,13 @@ function App() {
 
       <div className="h-[40px]" />
       {isLoading && (
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-center gap-3 z-10">
           <Spinner />
-          <p className="text-stone-900">Fetching availability data...</p>
+          <p className="text-stone-300">Fetching availability data...</p>
         </div>
       )}
 
+      <div className="h-[40px]" />
       <Availability availData={availData} />
     </div>
   );

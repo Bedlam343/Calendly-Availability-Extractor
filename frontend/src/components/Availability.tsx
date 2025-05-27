@@ -28,9 +28,11 @@ const Availability = ({ availData }: Props) => {
   }
 
   return (
-    <div className="flex flex-col items-center text-stone-100">
-      <div className="flex flex-col gap-8">
-        <p className="text-2xl text-center">Availability (Next 4 Weeks)</p>
+    <div className="flex flex-col items-center text-stone-100 z-50">
+      <div className="flex flex-col gap-7">
+        <p className="text-2xl text-center font-mono text-stone-300">
+          Availability (Next 4 Weeks)
+        </p>
         <div className="flex flex-col gap-6">
           {Object.keys(availData).map((year) => {
             const months = availData[year];
@@ -66,11 +68,21 @@ const Availability = ({ availData }: Props) => {
                   className="flex flex-col items-center "
                 >
                   <div>
-                    <p className="text-xl mb-2">
-                      {month} {year}
-                    </p>
+                    <div className="relative flex pointer-events-none mb-2">
+                      <p className="text-xl text-stone-100">
+                        {month} {year}
+                      </p>
+                      <div className="animate-reveal-left absolute top-0  pb-4">
+                        <p
+                          className="text-xl text-transparent underline decoration-1 
+                          underline-offset-2 decoration-purple-400 decoration-wavy"
+                        >
+                          {month} {year}
+                        </p>
+                      </div>
+                    </div>
 
-                    <div className="border-[1px] border-stone-600 rounded-lg px-2 py-2">
+                    <div className="border-[1px] border-stone-700 rounded-lg px-2 py-2">
                       <table className="">
                         <thead className="">
                           <tr>

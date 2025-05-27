@@ -11,7 +11,7 @@ function App() {
   const [availData, setAvailData] = useState<AvailabilityType>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const onFormSubmit = async (url: string) => {
+  const onFormSubmit = async (url: string, weeks: number) => {
     setIsLoading(true);
 
     const response = await fetch('http://localhost:3000/', {
@@ -19,7 +19,7 @@ function App() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ calendlyUrl: url }),
+      body: JSON.stringify({ calendlyUrl: url, weeks }),
     });
 
     const data = await response.json();

@@ -3,15 +3,19 @@ import { getNextMonday, getFormattedDate } from './helpers';
 import { MONTH_INDEX } from './constants';
 import type { Availability } from './types';
 
-const scrapeCalendly = async (calendlyUrl: string) => {
+const scrapeCalendly = async (calendlyUrl: string, weeks: number) => {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
 
   const startDate = getNextMonday();
   const startDateStr = getFormattedDate(startDate);
 
-  const endDate = new Date();
-  endDate.setDate(endDate.getDate() + 28);
+  const endDate = new Date(
+    startDate.getFullYear(),
+    startDate.getMonth(),
+    startDate.getDay(),
+  );
+  endDate.setDate(endDate.getDate() + 7 * weeks);
   const endDateStr = getFormattedDate(endDate);
 
   try {

@@ -31,7 +31,7 @@ const Availability = ({ availData }: Props) => {
     <div className="flex flex-col items-center text-stone-100 z-50">
       <div className="flex flex-col gap-7">
         <p className="text-2xl text-center font-mono text-stone-300">
-          Availability (Next 4 Weeks)
+          Availability
         </p>
         <div className="flex flex-col gap-6">
           {Object.keys(availData).map((year) => {

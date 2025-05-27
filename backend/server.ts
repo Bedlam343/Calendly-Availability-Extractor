@@ -10,9 +10,9 @@ const router = express.Router();
 router
   .route('/')
   .post(async (req: Request, res: Response, next: NextFunction) => {
-    const { calendlyUrl } = req.body;
+    const { calendlyUrl, weeks } = req.body;
 
-    const availData = await scrapeCalendly(calendlyUrl);
+    const availData = await scrapeCalendly(calendlyUrl, weeks);
 
     console.log(availData);
 

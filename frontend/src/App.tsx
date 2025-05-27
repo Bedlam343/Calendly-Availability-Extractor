@@ -4,15 +4,15 @@ import Form from 'src/components/Form';
 import Availability from 'src/components/Availability';
 import CursorStalker from 'src/components/ui/CursorStalker';
 import Spinner from 'src/components/ui/Spinner';
-import { DUMMY_DATA } from './utils/constant';
 import type { Availability as AvailabilityType } from 'src/utils/types';
 
 function App() {
-  const [availData, setAvailData] = useState<AvailabilityType>();
+  const [availData, setAvailData] = useState<AvailabilityType | undefined>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onFormSubmit = async (url: string, weeks: number) => {
     setIsLoading(true);
+    setAvailData(undefined);
 
     const response = await fetch('http://localhost:3000/', {
       method: 'POST',

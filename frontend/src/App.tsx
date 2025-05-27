@@ -4,6 +4,7 @@ import Form from 'src/components/Form';
 import Availability from 'src/components/Availability';
 import CursorStalker from 'src/components/ui/CursorStalker';
 import Spinner from 'src/components/ui/Spinner';
+import { scrapeCalendly } from 'src/service';
 import type { Availability as AvailabilityType } from 'src/utils/types';
 
 function App() {
@@ -16,31 +17,19 @@ function App() {
     setAvailData(undefined);
     setError('');
 
-    try {
-      const response = await fetch('http://localhost:3000/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ calendlyUrl: url, weeks }),
-      });
+    const data = await scrapeCalendly(url, weeks);
 
-      const data = await response.json();
-
-      setIsLoading(false);
-
-      if (data) {
-        setAvailData(data);
-      }
-    } catch (err) {
-      console.error(err);
-      setIsLoading(false);
+    if (data) {
+      setAvailData(data);
+    } else {
       setError('Error fetching availability. Try again.');
     }
+
+    setIsLoading(false);
   };
 
   return (
-    <div className="my-8 flex flex-col items-center">
+    <div className="my-9 flex flex-col items-center">
       <Title />
 
       <div className="w-[500px]">

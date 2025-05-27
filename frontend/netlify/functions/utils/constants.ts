@@ -1,6 +1,3 @@
-export const NETLIFY_SERVERLESS_BASE_URL = '/.netlify/functions';
-export const API_BASE_URL = 'http://localhost:3000/';
-
 export const MONTH_INDEX = {
   January: 0,
   February: 1,

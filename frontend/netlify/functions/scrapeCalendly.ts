@@ -1,14 +1,18 @@
 import { Context } from '@netlify/functions';
-import { chromium } from 'playwright';
+import { chromium } from 'playwright-core';
 import { getFormattedDate, getNextMonday } from './utils/helpers';
 import { MONTH_INDEX } from './utils/constants';
 import { Availability } from './utils/types';
+
+const BROWSERLESS_API_KEY = process.env.BROWSERLESS_API_KEY as string;
 
 export default async (request: Request, context: Context) => {
   const body = await request.json();
   const { calendlyUrl, weeks } = body;
 
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.connect(
+    `wss://production-sfo.browserless.io/chromium/playwright?token=${BROWSERLESS_API_KEY}`,
+  );
   const page = await browser.newPage();
 
   const startDate = getNextMonday();

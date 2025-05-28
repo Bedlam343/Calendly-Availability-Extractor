@@ -4,14 +4,10 @@ import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/',
   plugins: [react()],
   resolve: {
     alias: {
       src: path.resolve('src/'),
     },
-  },
-  optimizeDeps: {
-    exclude: ['chromium-bidi'],
   },
 });

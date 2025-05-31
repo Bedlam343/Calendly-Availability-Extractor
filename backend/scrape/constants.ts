@@ -12,3 +12,6 @@ export const MONTH_INDEX = {
   November: 10,
   December: 11,
 };
+
+export const BROWSERLESS_API_URL =
+  'https://production-sfo.browserless.io/chromium/function';

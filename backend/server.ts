@@ -2,9 +2,11 @@ import express from 'express';
 import type { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
 
 import scrapeCalendly from './scrape/scrape-calendly';
 
+dotenv.config();
 const app = express();
 const router = express.Router();
 router

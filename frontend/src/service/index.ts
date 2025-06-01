@@ -1,22 +1,25 @@
 const MODE = import.meta.env.MODE;
-import { API_BASE_URL, NETLIFY_SERVERLESS_BASE_URL } from 'src/utils/constant';
+const LAMBDA_FUNCTION_URL = import.meta.env.VITE_AWS_LAMBDA_FUNCTION_URL;
+const LAMBDA_AUTH_KEY = import.meta.env.VITE_AWS_LAMBDA_AUTH_KEY;
+const LOCAL_API_BASE_URL = import.meta.env.VITE_LOCAL_API_BASE_URL;
 
 export const scrapeCalendly = async (calendlyUrl: string, weeks: number) => {
+  console.log(LAMBDA_FUNCTION_URL, LOCAL_API_BASE_URL);
   try {
     const url =
-      MODE === 'production'
-        ? `${NETLIFY_SERVERLESS_BASE_URL}/scrapeCalendly`
-        : API_BASE_URL;
+      MODE === 'production' ? LAMBDA_FUNCTION_URL : LOCAL_API_BASE_URL;
 
     const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Api-Key': LAMBDA_AUTH_KEY,
       },
       body: JSON.stringify({ calendlyUrl, weeks }),
     });
 
     if (!response.ok) {
+      console.error(await response.text());
       throw new Error(`Error fetching availability`);
     }
 

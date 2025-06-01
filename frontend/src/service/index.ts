@@ -4,7 +4,6 @@ const LAMBDA_AUTH_KEY = import.meta.env.VITE_AWS_LAMBDA_AUTH_KEY;
 const LOCAL_API_BASE_URL = import.meta.env.VITE_LOCAL_API_BASE_URL;
 
 export const scrapeCalendly = async (calendlyUrl: string, weeks: number) => {
-  console.log(LAMBDA_FUNCTION_URL, LOCAL_API_BASE_URL);
   try {
     const url =
       MODE === 'production' ? LAMBDA_FUNCTION_URL : LOCAL_API_BASE_URL;
